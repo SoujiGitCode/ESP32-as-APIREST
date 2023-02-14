@@ -10,7 +10,7 @@
 <h1>Lets generate a random number</h1>
 <p>The first random number is: <span id='a1'>-</span></p>
 <p>The second random number is: <span id='a2'>-</span></p>
-<p>The first random number is: <span id='a3'>-</span></p>
+<p>The first random number is: <span id='a'>-</span></p>
 <p><button type='button' id='BTN_SEND_BACK'>
 Send info to ESP32
 </button></p>
@@ -22,8 +22,7 @@ Send info to ESP32
   var Socket;
   document.getElementById('BTN_SEND_BACK').addEventListener('click', button_send_back);
   function init() {
-    //Socket = new WebSocket('ws://' + window.location.hostname + ':81/');
-      Socket = new WebSocket('ws://' + '192.168.4.1'+ ':81/');
+    Socket = new WebSocket('ws://' + window.location.hostname + ':81/');
     Socket.onmessage = function(event) {
       processCommand(event);
     };
@@ -39,10 +38,11 @@ Send info to ESP32
   }
   function processCommand(event) {
 	var obj = JSON.parse(event.data);
-	document.getElementById('a1').innerHTML = obj.sections.a.a1;
-	document.getElementById('a2').innerHTML = obj.sections.a.a2;
-	document.getElementById('a3').innerHTML = obj.sections.a.a3;
-    //console.dir(obj)
+	document.getElementById('a1').innerHTML = obj.rand1;
+	document.getElementById('a2').innerHTML = obj.rand2;
+	document.getElementById('a3').innerHTML = obj.rand2;
+    console.log(obj.rand1);
+	console.log(obj.rand2);
   }
   window.onload = function(event) {
     init();
