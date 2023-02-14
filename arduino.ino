@@ -56,7 +56,6 @@ void setup() {
 
   webSocket.begin();
   webSocket.onEvent(webSocketEvent);
-
   Serial.println("Webserver Started!");
 }
 
@@ -73,7 +72,6 @@ void loop() {
 
     String message = "{\"number1\": " + String(number1) + ",\"number2\": " + String(number2) + ",\"number3\": " + String(number3) + "}";
     String longMessage= "{\"sections\":{\"a\":{\"a1\":"+String(number1)+",\"a2\":"+String(number2)+",\"a3\":"+String(number3)+",\"a4\":"+String(number4)+"},\"b\":{\"b1\":"+String(number1)+",\"b2\":"+String(number2)+",\"b3\":"+String(number3)+",\"b4\":"+String(number4)+"},\"c\":{\"c1\":"+String(number1)+",\"c2\":"+String(number2)+",\"c3\":"+String(number3)+",\"c4\":"+String(number4)+"}}}";
-
 
     webSocket.broadcastTXT(longMessage);
   }
